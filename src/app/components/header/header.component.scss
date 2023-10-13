@@ -1,0 +1,17 @@
+@use "/src/global/functions.scss";
+@use "/src/global/variables.scss";
+
+._header {
+  height: variables.$header-height;
+  vertical-align: middle;
+  ._header-content {
+    @include functions.flex(space-between, flex-start);
+    width: 75%;
+  }
+}
+
+@media only screen and (max-width: 900px) {
+  ._header {
+    display: none;
+  }
+}

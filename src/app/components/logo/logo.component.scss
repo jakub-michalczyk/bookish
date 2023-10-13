@@ -1,0 +1,9 @@
+@use "/src/global/functions.scss";
+
+._logo {
+  @include functions.flex(center, center);
+  img {
+    max-width: 75%;
+    object-fit: contain;
+  }
+}
