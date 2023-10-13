@@ -4,9 +4,8 @@
 ._header {
   height: variables.$header-height;
   vertical-align: middle;
-  box-sizing: border-box;
   ._header-content {
-    @include functions.flex(space-between, center);
+    @include functions.flex(space-between, flex-start);
     width: 75%;
   }
 }

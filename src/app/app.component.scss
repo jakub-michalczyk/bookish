@@ -1,0 +1,17 @@
+._bg {
+  background-image: url("/assets/images/bg.png");
+  background-size: 100% 60%;
+  background-repeat: no-repeat;
+}
+
+@media only screen and (max-width: 768px) {
+  ._bg {
+    background-size: 100% 40%;
+  }
+}
+
+@media only screen and (max-width: 414px) {
+  ._bg {
+    background-size: 100% 20%;
+  }
+}
