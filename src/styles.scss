@@ -1,0 +1,41 @@
+@use "/src/global/variables.scss";
+@use "/src/global/functions.scss";
+@import url("https://fonts.googleapis.com/css2?family=Oswald:wght@200;400&display=swap");
+
+//global styling
+* {
+  font-family: "Roboto Condensed", sans-serif;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+img {
+  max-width: 100%;
+}
+
+body,
+html {
+  @extend .w-full;
+  @extend .ma-0;
+}
+
+//atomic classes
+.w-full {
+  width: 100%;
+}
+
+.remove-default-styling {
+  @extend .ma-0;
+  @extend .pa-0;
+}
+
+.box-sizing {
+  box-sizing: border-box;
+}
+
+.font-oswald {
+  font-family: "Oswald", sans-serif;
+}
