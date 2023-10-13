@@ -1,0 +1,16 @@
+@use "/src/global/functions.scss";
+
+* {
+  font-family: "Roboto Condensed", sans-serif;
+}
+
+body,
+html {
+  @extend .w-full;
+  margin: 0;
+  height: 100%;
+}
+
+.w-full {
+  width: 100%;
+}

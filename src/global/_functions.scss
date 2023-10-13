@@ -1,0 +1,17 @@
+@use "/src/global/variables.scss";
+
+@each $name, $color in variables.$colors {
+  .bg-col-#{$name} {
+    background: $color;
+  }
+  .col-#{$name} {
+    color: $color;
+  }
+}
+
+@mixin flex($justify, $align, $direction: row) {
+  display: flex;
+  justify-content: $justify;
+  align-items: $align;
+  flex-direction: $direction;
+}
