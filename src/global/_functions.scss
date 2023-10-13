@@ -2,7 +2,7 @@
 
 //generate paddings & margins classes
 @mixin generate($prefix, $property) {
-  $sizes: 0, 0.1, 0.25, 0.5, 1, 1.5, 3, 6, 20;
+  $sizes: 0, 0.1, 0.25, 0.5, 1, 1.5, 3, 6;
   $spacing: 1rem;
 
   @for $i from 1 through length($sizes) {
@@ -51,24 +51,10 @@ $rules: (
   }
 }
 
-//generate atomic text align property classes
-@each $name in variables.$display {
-  .#{$name} {
-    text-align: $name;
-  }
-}
-
 //generate atomic position property classes
 @each $position in variables.$positions {
   .pos-#{$position} {
     position: $position;
-  }
-}
-
-//Width
-@each $name, $size in variables.$sizes {
-  .w-#{$name} {
-    width: $size;
   }
 }
 
