@@ -1,0 +1,57 @@
+@use "/src/global/functions.scss";
+
+._homepage {
+  @include functions.flex(center, center, column);
+}
+
+._heading {
+  font-size: 3rem;
+  font-weight: 200;
+  letter-spacing: 4px;
+  &-author {
+    font-size: 4rem;
+    font-weight: 200;
+    letter-spacing: 4px;
+  }
+}
+
+._books-wrap {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: repeat(3, 1fr);
+  grid-column-gap: 5rem;
+  grid-row-gap: 5rem;
+  ._author {
+    font-style: italic;
+    font-weight: bold;
+  }
+}
+
+@media only screen and (max-width: 1000px) {
+  ._books-wrap {
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: repeat(3, 1fr);
+    grid-column-gap: 4rem;
+    grid-row-gap: 4rem;
+  }
+  ._heading-author {
+    padding-left: 0;
+  }
+}
+
+@media only screen and (max-width: 768px) {
+  ._heading {
+    font-size: 2rem;
+    &-author {
+      font-size: 3rem;
+    }
+  }
+}
+
+@media only screen and (max-width: 414px) {
+  ._books-wrap {
+    grid-template-columns: repeat(1, 1fr);
+    grid-template-rows: repeat(6, 1fr);
+    grid-row-gap: 2rem;
+  }
+}
