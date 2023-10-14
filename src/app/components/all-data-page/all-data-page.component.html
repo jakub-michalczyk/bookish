@@ -1,0 +1,40 @@
+<div class="_wrap pt-7 pb-7">
+    <div class="_content">
+        <div class="col-darkgrey bg-col-white fs-1 _pagination-bar">
+            <img class="cursor-pointer mr-5 _arrow _left"
+                 (click)="updatePage()"
+                 src="assets/images/arrow.svg">
+            <span>Page {{ currentPage }} of {{ calculatePagination }}</span>
+            <img class="cursor-pointer ml-5 _arrow"
+                 (click)="updatePage(true)"
+                 src="assets/images/arrow.svg">
+        </div>
+        <div class="_table-container">
+            <table class="w-full bg-col-white _table">
+                <thead>
+                    <tr class="_row">
+                        <th class="_table-heading"
+                            *ngFor="let field of tableFields">{{ getTableHeading(field) }}</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr class="_row"
+                        *ngFor="let row of getRow(currentPage)">
+                        <td class="_table-field"
+                            *ngFor="let field of tableFields">
+                            <ng-container [ngSwitch]="field === 'simple_thumb'">
+                                <ng-container *ngSwitchCase="true">
+                                    <img [src]="row[field]" />
+                                </ng-container>
+                                <ng-container *ngSwitchCase="false">
+                                    {{ row[field] }}
+                                </ng-container>
+                            </ng-container>
+
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

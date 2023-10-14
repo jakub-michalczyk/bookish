@@ -1,7 +1,11 @@
 export interface Book {
+  [key: string]: string | number | undefined;
   id: number;
   author: string;
   title: string;
-  img: string;
-  description: string;
+  cover: string;
+  description?: string;
+  genre?: string;
+  epoch?: string;
+  kind?: string;
 }
