@@ -1,16 +1,19 @@
 <div class="w-full box-sizing _homepage pt-6 pb-6">
-    <h1 class="col-white ma-0 font-oswald _heading">Selected readings by </h1>
-    <h2 class="col-white ma-0 pl-7 font-oswald _heading-author">Adam Mickiewicz</h2>
+    <h1 class="col-white ma-0 font-oswald fs-4 _heading">Selected readings by </h1>
+    <h2 class="col-white ma-0 pl-7 font-oswald fs-5 _heading-author">Adam Mickiewicz</h2>
     <div class="w-half mt-6 _books-wrap">
-        <div class="w-full left _book"
-             *ngFor="let book of books">
-            <div>
-                <img [src]="book.img" />
+        <a class="w-full cursor-pointer left _book"
+           (click)="navigateWithState(book)"
+           *ngFor="let book of books">
+            <div class="w-full">
+                <div>
+                    <img [src]="book.img" />
+                </div>
+                <div class="mt-2">
+                    <div class="_author">{{ book.author }}</div>
+                    <div>{{ book.title }}</div>
+                </div>
             </div>
-            <div class="mt-2">
-                <div class="_author">{{ book.author }}</div>
-                <div>{{ book.title }}</div>
-            </div>
-        </div>
+        </a>
     </div>
 </div>

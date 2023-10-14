@@ -72,6 +72,23 @@ $rules: (
   }
 }
 
+@each $name in variables.$textPositions {
+  .#{$name} {
+    text-align: $name;
+  }
+}
+
+//generate font sizes classes
+@for $i from 1 through length(variables.$fontSizes) {
+  // Get the size for the current index
+  $size: nth(variables.$fontSizes, $i);
+
+  // Create the rule
+  .fs-#{$i} {
+    font-size: $size;
+  }
+}
+
 @mixin flex($justify, $align, $direction: row) {
   display: flex;
   justify-content: $justify;
