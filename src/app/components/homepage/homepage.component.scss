@@ -5,13 +5,18 @@
 }
 
 ._heading {
-  font-size: 3rem;
   font-weight: 200;
   letter-spacing: 4px;
   &-author {
-    font-size: 4rem;
     font-weight: 200;
     letter-spacing: 4px;
+  }
+}
+
+._book {
+  transition: transform 0.3s;
+  &:hover {
+    transform: scale(1.1);
   }
 }
 

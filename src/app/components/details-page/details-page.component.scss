@@ -1,0 +1,47 @@
+@use "/src/global/functions.scss";
+
+._wrap {
+  @include functions.flex(center, center);
+}
+
+._details-wrap {
+  @include functions.flex(center, flex-start);
+  width: 75%;
+}
+
+._image-container {
+  width: 40%;
+}
+
+._content {
+  width: 60%;
+}
+
+._title {
+  font-style: italic;
+  font-weight: normal;
+}
+
+._description {
+  line-height: 1.5rem;
+}
+
+@media only screen and (max-width: 900px) {
+  ._details-wrap {
+    @include functions.flex(center, center, column);
+  }
+
+  ._title,
+  ._author {
+    text-align: center;
+  }
+
+  ._image-container {
+    width: 75%;
+  }
+  ._content {
+    padding-left: 0;
+    width: 75%;
+    margin-top: 1rem;
+  }
+}
