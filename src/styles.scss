@@ -23,10 +23,6 @@ html {
 }
 
 //atomic classes
-.w-full {
-  width: 100%;
-}
-
 .remove-default-styling {
   @extend .ma-0;
   @extend .pa-0;

@@ -1,13 +1,20 @@
 <div class="_wrap pt-7 pb-7">
     <div class="_content">
-        <div class="col-darkgrey bg-col-white fs-1 _pagination-bar">
-            <img class="cursor-pointer mr-5 _arrow _left"
-                 (click)="updatePage()"
-                 src="assets/images/arrow.svg">
-            <span>Page {{ currentPage }} of {{ calculatePagination }}</span>
-            <img class="cursor-pointer ml-5 _arrow"
-                 (click)="updatePage(true)"
-                 src="assets/images/arrow.svg">
+        <div class="col-darkgrey pa-4 bg-col-white fs-1 _pagination-bar">
+            <div class="_pagination">
+                <img class="cursor-pointer mr-4 _arrow _left"
+                     (click)="updatePage()"
+                     src="assets/images/arrow.svg">
+                <span>Page {{ currentPage }} of {{ calculatePagination }}</span>
+                <img class="cursor-pointer ml-4 _arrow"
+                     (click)="updatePage(true)"
+                     src="assets/images/arrow.svg">
+            </div>
+
+            <input type="text"
+                   placeholder="Enter your search here"
+                   (keyup)="searchQuery($event.target)"
+                   class="_search-input">
         </div>
         <div class="_table-container">
             <table class="w-full bg-col-white _table">

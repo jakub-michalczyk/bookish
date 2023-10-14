@@ -17,21 +17,31 @@ export class AllDataPageComponent implements OnInit {
     'kind',
   ];
   data: Book[] = [];
+  filteredData: Book[] = [];
   _currentPage = 1;
+  _pagination = 0;
 
   constructor(private httpService: HttpService) {}
 
   ngOnInit(): void {
     this.httpService.getData().subscribe((data) => {
       this.data = data as Book[];
+      this.calculatePagination =
+        this.data?.length % 5 === 0
+          ? this.data?.length / 5
+          : Math.floor(this.data?.length / 5) + 1;
     });
   }
 
   getRow(page: number) {
     //for first page we slice first five elements, than we end slicing every fifth element
-    return page === 1
-      ? this.data?.slice(0, 5)
-      : this.data?.slice(page * 5, page * 5 + 5);
+    return this.filteredData.length === 0
+      ? page === 1
+        ? this.data?.slice(0, 5)
+        : this.data?.slice(page * 5, page * 5 + 5)
+      : page === 1
+      ? this.filteredData?.slice(0, 5)
+      : this.filteredData?.slice(page * 5, page * 5 + 5);
   }
 
   getTableHeading(heading: string) {
@@ -55,11 +65,36 @@ export class AllDataPageComponent implements OnInit {
       : (this.currentPage = this.currentPage - 1);
   }
 
+  searchQuery(elem: EventTarget | null) {
+    let val = (elem as HTMLInputElement).value.toLowerCase();
+
+    val === '' ? this.restoreDefaultData() : null;
+
+    //check whether book author or title includes search query
+    this.filteredData = this.data.filter((book) => {
+      return (
+        book.author.toLowerCase().includes(val) ||
+        book.title.toLowerCase().includes(val)
+      );
+    });
+
+    //limit page
+    this.calculatePagination =
+      this.filteredData?.length % 5 === 0
+        ? this.filteredData?.length / 5
+        : Math.floor(this.filteredData?.length / 5) + 1;
+  }
+
+  restoreDefaultData() {
+    this.filteredData = [];
+  }
+
+  set calculatePagination(value: number) {
+    this._pagination = value;
+  }
+
   get calculatePagination() {
-    //calculating the maximum possible page for our data
-    return this.data?.length % 5 === 0
-      ? this.data?.length / 5
-      : Math.floor(this.data?.length / 5) + 1;
+    return this._pagination;
   }
 
   get currentPage() {
