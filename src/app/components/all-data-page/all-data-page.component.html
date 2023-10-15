@@ -20,6 +20,7 @@
             <table class="w-full bg-col-white _table">
                 <thead>
                     <tr class="_row">
+                        <th class="_empty-cell">&nbsp;</th>
                         <th class="fw-4 _table-heading"
                             *ngFor="let field of tableFields">
                             <ng-container [ngSwitch]="field.name === 'simple_thumb'">
@@ -41,6 +42,10 @@
                             <tr class="cursor-pointer _editable-row"
                                 *ngFor="let row of getRow(currentPage)"
                                 (dblclick)="editRow(row)">
+                                <td class="fs-1 fw-3 col-darkgrey center _edit"
+                                    (click)="editRow(row)">
+                                    Edit
+                                </td>
                                 <td class="_table-field"
                                     *ngFor="let field of tableFields">
                                     <ng-container [ngSwitch]="field.name === 'simple_thumb'">
@@ -66,7 +71,6 @@
 
                 </tbody>
             </table>
-
         </div>
     </div>
 </div>

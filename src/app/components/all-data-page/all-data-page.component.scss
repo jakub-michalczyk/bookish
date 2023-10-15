@@ -30,7 +30,7 @@
   ._table-heading {
     text-align: left;
     padding: 1.5rem;
-    width: calc(100% / 7);
+    width: calc((100% / 7));
     box-sizing: border-box;
   }
   ._no-results-field {
@@ -89,6 +89,17 @@
   width: 50%;
 }
 
+._edit {
+  display: none;
+  width: 3%;
+  padding: 1.5rem;
+  text-decoration: underline;
+}
+
+._empty-cell {
+  display: none;
+}
+
 @media only screen and (max-width: 768px) {
   ._content {
     width: 75%;
@@ -96,6 +107,10 @@
 }
 
 @media only screen and (max-width: 900px) {
+  ._edit,
+  ._empty-cell {
+    display: table-cell;
+  }
   ._search-input {
     width: 75%;
     margin-top: 1rem;
