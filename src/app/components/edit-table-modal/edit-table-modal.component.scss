@@ -1,0 +1,30 @@
+@use "/src/global/functions.scss";
+
+._content {
+  max-width: 100%;
+  width: 75%;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+._btn {
+  border: none;
+  outline: none;
+  border-radius: 2px;
+}
+
+._buttons-wrap {
+  @include functions.flex(center, center);
+}
+
+@media only screen and (max-width: 768px) {
+  ._buttons-wrap {
+    @include functions.flex(center, center, column);
+    ._btn {
+      width: 100%;
+      margin-left: 0;
+      margin-right: 0;
+      margin-bottom: 0.5rem;
+    }
+  }
+}

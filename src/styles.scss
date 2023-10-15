@@ -23,10 +23,6 @@ html {
 }
 
 //atomic classes
-.w-full {
-  width: 100%;
-}
-
 .remove-default-styling {
   @extend .ma-0;
   @extend .pa-0;
@@ -42,4 +38,19 @@ html {
 
 .cursor-pointer {
   cursor: pointer;
+}
+
+.input {
+  @extend .b-radius-50;
+  border: 1px solid map-get(variables.$colors, grey);
+  padding: 0.5rem 0.75rem;
+  outline: none;
+}
+
+.block-scroll {
+  overflow-y: hidden;
+}
+
+.b-radius-50 {
+  border-radius: 50px;
 }

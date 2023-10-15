@@ -1,0 +1,23 @@
+<app-modal [name]="name">
+    <div class="w-full mt-5 _content">
+        <h4 class="w-full ma-0 left fs-4">Edit row</h4>
+        <form class="mt-6 _form">
+            <div class="mb-5 w-full _field"
+                 *ngFor="let field of keys">
+                <label class="left block mb-2"
+                       [for]="field">{{ getName(field) }}</label>
+                <input class="w-full box-sizing input"
+                       [(ngModel)]="data[field]"
+                       [name]="field"
+                       type="text" />
+            </div>
+        </form>
+        <div class="w-full mt-6 _buttons-wrap">
+            <button (click)="close()"
+                    class="cursor-pointer w-half bg-col-blue col-white pt-3 pb-3 pr-4 pl-4 mr-2 _btn">Close</button>
+            <button (click)="save()"
+                    class="cursor-pointer w-half bg-col-blue col-white pt-3 pb-3 pr-4 pl-4 ml-2 _btn">Save
+                changes</button>
+        </div>
+    </div>
+</app-modal>

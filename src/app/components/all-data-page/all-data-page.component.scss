@@ -1,0 +1,125 @@
+@use "/src/global/variables.scss";
+@use "/src/global/functions.scss";
+
+._wrap {
+  @include functions.flex(center, center, column);
+}
+
+._content {
+  width: 50%;
+  -webkit-box-shadow: -1px -1px 29px -8px rgba(154, 154, 154, 1);
+  -moz-box-shadow: -1px -1px 29px -8px rgba(154, 154, 154, 1);
+  box-shadow: -1px -1px 29px -8px rgba(154, 154, 154, 1);
+}
+
+._table {
+  border-collapse: collapse;
+  ._row {
+    border-bottom: 1px solid map-get(variables.$colors, grey);
+  }
+  ._editable-row {
+    @extend ._row;
+    &:hover {
+      @extend .bg-col-lightgrey;
+    }
+  }
+  ._table-heading {
+    color: map-get(variables.$colors, darkgrey);
+  }
+  ._table-field,
+  ._table-heading {
+    text-align: left;
+    padding: 1.5rem;
+    width: calc((100% / 7));
+    box-sizing: border-box;
+  }
+  ._no-results-field {
+    text-align: center;
+  }
+  &-container {
+    overflow-x: auto;
+    &::-webkit-scrollbar-track {
+      -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+      background-color: #f5f5f5;
+    }
+
+    &::-webkit-scrollbar {
+      height: 6px;
+      background-color: #f5f5f5;
+    }
+
+    &::-webkit-scrollbar-thumb {
+      border-radius: 10px;
+      -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+      background-color: map-get(variables.$colors, blue);
+    }
+  }
+}
+
+._heading-text {
+  &:hover {
+    @extend .fw-5;
+  }
+}
+
+._active {
+  border: 1px solid map-get(variables.$colors, darkgrey);
+  padding: 0.2rem 0.4rem;
+  border-radius: 50px;
+}
+
+._pagination {
+  width: 40%;
+  &-bar {
+    @include functions.flex(space-between, center);
+    box-sizing: border-box;
+  }
+}
+
+._left {
+  -webkit-transform: scaleX(-1);
+  transform: scaleX(-1);
+}
+
+._arrow {
+  width: 16px;
+}
+
+._search-input {
+  width: 50%;
+}
+
+._edit {
+  display: none;
+  width: 3%;
+  padding: 1.5rem;
+  text-decoration: underline;
+}
+
+._empty-cell {
+  display: none;
+}
+
+@media only screen and (max-width: 768px) {
+  ._content {
+    width: 75%;
+  }
+}
+
+@media only screen and (max-width: 900px) {
+  ._edit,
+  ._empty-cell {
+    display: table-cell;
+  }
+  ._search-input {
+    width: 75%;
+    margin-top: 1rem;
+  }
+  ._pagination {
+    text-align: center;
+    width: 75%;
+    &-bar {
+      @include functions.flex(center, center, column);
+    }
+  }
+}

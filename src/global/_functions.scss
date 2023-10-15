@@ -72,9 +72,21 @@ $rules: (
   }
 }
 
+//text align
 @each $name in variables.$textPositions {
   .#{$name} {
     text-align: $name;
+  }
+}
+
+//generate font weight classes
+@for $i from 1 through length(variables.$fontWeight) {
+  // Get the size for the current index
+  $size: nth(variables.$fontWeight, $i);
+
+  // Create the rule
+  .fw-#{$i} {
+    font-weight: $size;
   }
 }
 
