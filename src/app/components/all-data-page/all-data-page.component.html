@@ -14,19 +14,20 @@
             <input type="text"
                    placeholder="Enter your search here"
                    (keyup)="searchQuery($event.target)"
-                   class="_search-input">
+                   class="input _search-input">
         </div>
         <div class="_table-container">
             <table class="w-full bg-col-white _table">
                 <thead>
                     <tr class="_row">
                         <th class="_table-heading"
-                            *ngFor="let field of tableFields">{{ getTableHeading(field) }}</th>
+                            *ngFor="let field of tableFields">{{ getName(field) }}</th>
                     </tr>
                 </thead>
                 <tbody>
-                    <tr class="_row"
-                        *ngFor="let row of getRow(currentPage)">
+                    <tr class="cursor-pointer _editable-row"
+                        *ngFor="let row of getRow(currentPage)"
+                        (dblclick)="editRow(row)">
                         <td class="_table-field"
                             *ngFor="let field of tableFields">
                             <ng-container [ngSwitch]="field === 'simple_thumb'">
@@ -37,11 +38,14 @@
                                     {{ row[field] }}
                                 </ng-container>
                             </ng-container>
-
                         </td>
                     </tr>
                 </tbody>
             </table>
+
         </div>
     </div>
 </div>
+
+<!-- MODAL -->
+<app-edit-table-modal></app-edit-table-modal>

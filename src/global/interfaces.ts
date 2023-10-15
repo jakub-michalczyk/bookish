@@ -9,3 +9,9 @@ export interface Book {
   epoch?: string;
   kind?: string;
 }
+
+export interface Modal {
+  name: string;
+  data: any;
+  active: boolean;
+}

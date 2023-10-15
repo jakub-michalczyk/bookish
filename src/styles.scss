@@ -39,3 +39,18 @@ html {
 .cursor-pointer {
   cursor: pointer;
 }
+
+.input {
+  @extend .b-radius-50;
+  border: 1px solid map-get(variables.$colors, grey);
+  padding: 0.5rem 0.75rem;
+  outline: none;
+}
+
+.block-scroll {
+  overflow-y: hidden;
+}
+
+.b-radius-50 {
+  border-radius: 50px;
+}

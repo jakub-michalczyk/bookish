@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpService } from 'src/global/http.service';
 import { Book } from 'src/global/interfaces';
+import { ModalService } from 'src/global/modal.service';
+import { MODAL_NAME } from '../edit-table-modal/edit-table-modal.component';
+import { StorageService } from 'src/global/storage.service';
 
 @Component({
   selector: 'app-all-data-page',
@@ -20,17 +23,45 @@ export class AllDataPageComponent implements OnInit {
   filteredData: Book[] = [];
   _currentPage = 1;
   _pagination = 0;
+  modalName = MODAL_NAME;
 
-  constructor(private httpService: HttpService) {}
+  constructor(
+    private httpService: HttpService,
+    private modalService: ModalService,
+    private storageService: StorageService
+  ) {}
 
   ngOnInit(): void {
-    this.httpService.getData().subscribe((data) => {
-      this.data = data as Book[];
-      this.calculatePagination =
-        this.data?.length % 5 === 0
-          ? this.data?.length / 5
-          : Math.floor(this.data?.length / 5) + 1;
+    //check whether we have data stored in localstorage or we need to fetch it
+    if (this.storageService.getStorage('data') === null) {
+      this.httpService.getData().subscribe((data) => {
+        this.data = data as Book[];
+        this.prepareData();
+        this.storageService.saveStorage('data', JSON.stringify(this.data));
+        this.addPagination(this.data);
+      });
+    } else {
+      this.data = JSON.parse(this.storageService.getStorage('data')!);
+      this.addPagination(this.data);
+    }
+  }
+
+  addPagination(data: Book[]) {
+    //calculate maximum possible page for pagination
+    this.calculatePagination =
+      data?.length % 5 === 0
+        ? data?.length / 5
+        : Math.floor(data?.length / 5) + 1;
+  }
+
+  prepareData() {
+    //api doesn't provide any identification for the data so i'm adding it myself
+    let index = 0;
+    this.data.forEach((book) => {
+      book.id = index++;
     });
+
+    index = 0;
   }
 
   getRow(page: number) {
@@ -44,10 +75,8 @@ export class AllDataPageComponent implements OnInit {
       : this.filteredData?.slice(page * 5, page * 5 + 5);
   }
 
-  getTableHeading(heading: string) {
-    return heading === 'simple_thumb'
-      ? 'Cover'
-      : `${heading[0].toUpperCase()}${heading.slice(1)}`;
+  getName(name: string) {
+    return this.modalService.getTableHeading(name);
   }
 
   updatePage(addition = false) {
@@ -79,14 +108,15 @@ export class AllDataPageComponent implements OnInit {
     });
 
     //limit page
-    this.calculatePagination =
-      this.filteredData?.length % 5 === 0
-        ? this.filteredData?.length / 5
-        : Math.floor(this.filteredData?.length / 5) + 1;
+    this.addPagination(this.filteredData);
   }
 
   restoreDefaultData() {
     this.filteredData = [];
+  }
+
+  editRow(row: Book) {
+    this.modalService.openModal(MODAL_NAME, row);
   }
 
   set calculatePagination(value: number) {
