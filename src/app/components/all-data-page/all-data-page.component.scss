@@ -38,6 +38,9 @@
     width: calc(100% / 7);
     box-sizing: border-box;
   }
+  ._no-results-field {
+    text-align: center;
+  }
   &-container {
     overflow-x: auto;
     &::-webkit-scrollbar-track {

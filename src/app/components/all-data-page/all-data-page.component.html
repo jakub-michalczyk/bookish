@@ -25,21 +25,34 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr class="cursor-pointer _editable-row"
-                        *ngFor="let row of getRow(currentPage)"
-                        (dblclick)="editRow(row)">
-                        <td class="_table-field"
-                            *ngFor="let field of tableFields">
-                            <ng-container [ngSwitch]="field === 'simple_thumb'">
-                                <ng-container *ngSwitchCase="true">
-                                    <img [src]="row[field]" />
-                                </ng-container>
-                                <ng-container *ngSwitchCase="false">
-                                    {{ row[field] }}
-                                </ng-container>
-                            </ng-container>
-                        </td>
-                    </tr>
+                    <ng-container [ngSwitch]="showNoResultsInfo">
+                        <ng-container *ngSwitchCase="false">
+                            <tr class="cursor-pointer _editable-row"
+                                *ngFor="let row of getRow(currentPage)"
+                                (dblclick)="editRow(row)">
+                                <td class="_table-field"
+                                    *ngFor="let field of tableFields">
+                                    <ng-container [ngSwitch]="field === 'simple_thumb'">
+                                        <ng-container *ngSwitchCase="true">
+                                            <img [src]="row[field]" />
+                                        </ng-container>
+                                        <ng-container *ngSwitchCase="false">
+                                            {{ row[field] }}
+                                        </ng-container>
+                                    </ng-container>
+                                </td>
+                            </tr>
+                        </ng-container>
+                        <ng-container *ngSwitchCase="true">
+                            <tr>
+                                <td colspan="6"
+                                    class="center col-darkgrey _table-field _no-results-field">
+                                    Unfortunately we couldn't find any search results for your query
+                                </td>
+                            </tr>
+                        </ng-container>
+                    </ng-container>
+
                 </tbody>
             </table>
 

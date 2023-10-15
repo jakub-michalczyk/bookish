@@ -24,6 +24,7 @@ export class AllDataPageComponent implements OnInit {
   _currentPage = 1;
   _pagination = 0;
   modalName = MODAL_NAME;
+  showNoResultsInfo = false;
 
   constructor(
     private httpService: HttpService,
@@ -107,11 +108,21 @@ export class AllDataPageComponent implements OnInit {
       );
     });
 
+    if (this.filteredData.length === 0) {
+      return this.addNoResultsInfo();
+    }
+
     //limit page
     this.addPagination(this.filteredData);
   }
 
+  addNoResultsInfo() {
+    this.showNoResultsInfo = true;
+    this.calculatePagination = 1;
+  }
+
   restoreDefaultData() {
+    this.showNoResultsInfo = false;
     this.filteredData = [];
   }
 
