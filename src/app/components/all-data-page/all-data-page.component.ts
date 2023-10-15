@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpService } from 'src/global/http.service';
-import { Book } from 'src/global/interfaces';
+import { Book, DataTableHeadingFields } from 'src/global/interfaces';
 import { ModalService } from 'src/global/modal.service';
 import { MODAL_NAME } from '../edit-table-modal/edit-table-modal.component';
 import { StorageService } from 'src/global/storage.service';
@@ -11,13 +11,13 @@ import { StorageService } from 'src/global/storage.service';
   styleUrls: ['./all-data-page.component.scss'],
 })
 export class AllDataPageComponent implements OnInit {
-  tableFields: string[] = [
-    'simple_thumb',
-    'author',
-    'title',
-    'genre',
-    'epoch',
-    'kind',
+  tableFields: DataTableHeadingFields[] = [
+    { name: 'simple_thumb', active: false },
+    { name: 'author', active: false },
+    { name: 'title', active: false },
+    { name: 'genre', active: false },
+    { name: 'epoch', active: false },
+    { name: 'kind', active: false },
   ];
   data: Book[] = [];
   filteredData: Book[] = [];
@@ -62,6 +62,7 @@ export class AllDataPageComponent implements OnInit {
       book.id = index++;
     });
 
+    this.clearSorting();
     index = 0;
   }
 
@@ -128,6 +129,33 @@ export class AllDataPageComponent implements OnInit {
 
   editRow(row: Book) {
     this.modalService.openModal(MODAL_NAME, row);
+  }
+
+  sort(field: DataTableHeadingFields) {
+    //clicked on already active filter
+    if (this.tableFields.find((f) => f.name === field.name && f.active)) {
+      return this.clearSorting();
+    }
+
+    this.clearSorting();
+    this.tableFields[this.tableFields.indexOf(field)].active = true;
+
+    //clone data array
+    this.filteredData = this.data.slice();
+    this.filteredData.sort((a: Book, b: Book) => {
+      if (a[field.name]! < b[field.name]!) {
+        return -1;
+      }
+      if (a[field.name]! > b[field.name]!) {
+        return 1;
+      }
+      return 0;
+    });
+  }
+
+  clearSorting() {
+    this.tableFields.forEach((field) => (field.active = false));
+    this.filteredData.sort((a, b) => a.id - b.id);
   }
 
   set calculatePagination(value: number) {

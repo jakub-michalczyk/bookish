@@ -15,3 +15,8 @@ export interface Modal {
   data: any;
   active: boolean;
 }
+
+export interface DataTableHeadingFields {
+  name: string;
+  active: boolean;
+}

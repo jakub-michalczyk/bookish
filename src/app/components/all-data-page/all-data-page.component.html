@@ -20,8 +20,19 @@
             <table class="w-full bg-col-white _table">
                 <thead>
                     <tr class="_row">
-                        <th class="_table-heading"
-                            *ngFor="let field of tableFields">{{ getName(field) }}</th>
+                        <th class="fw-4 _table-heading"
+                            *ngFor="let field of tableFields">
+                            <ng-container [ngSwitch]="field.name === 'simple_thumb'">
+                                <span *ngSwitchCase="true">{{ getName(field.name) }}</span>
+
+                                <span *ngSwitchCase="false"
+                                      [ngClass]="{'_active': field.active}"
+                                      class="_heading-text cursor-pointer"
+                                      (click)="sort(field)">
+                                    {{ getName(field.name) }}
+                                </span>
+                            </ng-container>
+                        </th>
                     </tr>
                 </thead>
                 <tbody>
@@ -32,12 +43,12 @@
                                 (dblclick)="editRow(row)">
                                 <td class="_table-field"
                                     *ngFor="let field of tableFields">
-                                    <ng-container [ngSwitch]="field === 'simple_thumb'">
+                                    <ng-container [ngSwitch]="field.name === 'simple_thumb'">
                                         <ng-container *ngSwitchCase="true">
-                                            <img [src]="row[field]" />
+                                            <img [src]="row[field.name]" />
                                         </ng-container>
                                         <ng-container *ngSwitchCase="false">
-                                            {{ row[field] }}
+                                            {{ row[field.name] }}
                                         </ng-container>
                                     </ng-container>
                                 </td>

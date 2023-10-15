@@ -5,10 +5,8 @@
 }
 
 ._heading {
-  font-weight: 200;
   letter-spacing: 4px;
   &-author {
-    font-weight: 200;
     letter-spacing: 4px;
   }
 }
@@ -28,7 +26,6 @@
   grid-row-gap: 5rem;
   ._author {
     font-style: italic;
-    font-weight: bold;
   }
 }
 

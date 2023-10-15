@@ -5,10 +5,6 @@
   @include functions.flex(center, center, column);
 }
 
-._page {
-  font-weight: bold;
-}
-
 ._content {
   width: 50%;
   -webkit-box-shadow: -1px -1px 29px -8px rgba(154, 154, 154, 1);
@@ -29,7 +25,6 @@
   }
   ._table-heading {
     color: map-get(variables.$colors, darkgrey);
-    font-weight: 400;
   }
   ._table-field,
   ._table-heading {
@@ -59,6 +54,18 @@
       background-color: map-get(variables.$colors, blue);
     }
   }
+}
+
+._heading-text {
+  &:hover {
+    @extend .fw-5;
+  }
+}
+
+._active {
+  border: 1px solid map-get(variables.$colors, darkgrey);
+  padding: 0.2rem 0.4rem;
+  border-radius: 50px;
 }
 
 ._pagination {
