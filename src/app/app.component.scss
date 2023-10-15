@@ -1,18 +1,18 @@
 ._bg {
   background-image: url("/assets/images/bg.png");
-  background-size: 100% 60%;
+  background-size: 100% 700px;
   background-repeat: no-repeat;
   min-height: 100vh;
 }
 
-@media only screen and (max-width: 768px) {
+@media only screen and (max-width: 900px) {
   ._bg {
-    background-size: 100% 40%;
+    background-size: 100% 400px;
   }
 }
 
-@media only screen and (max-width: 414px) {
+@media only screen and (max-width: 600px) {
   ._bg {
-    background-size: 100% 20%;
+    background-size: 100% 300px;
   }
 }

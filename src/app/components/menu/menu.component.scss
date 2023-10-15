@@ -3,7 +3,6 @@
 ._menu {
   list-style: none;
   ._menu-link {
-    letter-spacing: 2px;
     &:hover {
       &::after {
         width: 35%;
@@ -28,6 +27,7 @@
   ._menu {
     width: 100%;
     ._menu-link {
+      display: block;
       text-align: center;
       margin-left: 0 !important;
       margin: 3rem 0;

@@ -14,6 +14,7 @@ import { AllDataPageComponent } from './components/all-data-page/all-data-page.c
 import { ModalComponent } from './components/modal/modal.component';
 import { EditTableModalComponent } from './components/edit-table-modal/edit-table-modal.component';
 import { FormsModule } from '@angular/forms';
+import { OffcanvasComponent } from './components/offcanvas/offcanvas.component';
 
 @NgModule({
   declarations: [
@@ -26,6 +27,7 @@ import { FormsModule } from '@angular/forms';
     AllDataPageComponent,
     ModalComponent,
     EditTableModalComponent,
+    OffcanvasComponent,
   ],
   imports: [BrowserModule, AppRoutingModule, HttpClientModule, FormsModule],
   providers: [],
