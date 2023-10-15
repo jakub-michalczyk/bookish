@@ -49,10 +49,7 @@ export class AllDataPageComponent implements OnInit {
 
   addPagination(data: Book[]) {
     //calculate maximum possible page for pagination
-    this.calculatePagination =
-      data?.length % 5 === 0
-        ? data?.length / 5
-        : Math.floor(data?.length / 5) + 1;
+    this.calculatePagination = Math.ceil(data.length / 5) - 1;
   }
 
   prepareData() {
@@ -111,6 +108,8 @@ export class AllDataPageComponent implements OnInit {
 
     if (this.filteredData.length === 0) {
       return this.addNoResultsInfo();
+    } else {
+      this.showNoResultsInfo = false;
     }
 
     //limit page
@@ -141,7 +140,10 @@ export class AllDataPageComponent implements OnInit {
     this.tableFields[this.tableFields.indexOf(field)].active = true;
 
     //clone data array
-    this.filteredData = this.data.slice();
+    if (this.filteredData.length === 0) {
+      this.filteredData = this.data.slice();
+    }
+
     this.filteredData.sort((a: Book, b: Book) => {
       if (a[field.name]! < b[field.name]!) {
         return -1;
