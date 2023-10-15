@@ -1,0 +1,18 @@
+<label class="pos-absolute _offcanvas-toggle"
+       for="check">
+    <input class="_offcanvas-btn-input"
+           (change)="offcanvasToggle()"
+           type="checkbox"
+           id="check" />
+    <span class="_offcanvas-btn-line bg-col-white"></span>
+    <span class="_offcanvas-btn-line bg-col-white"></span>
+    <span class="_offcanvas-btn-line bg-col-white"></span>
+</label>
+
+<div class="w-quarter box-sizing pos-absolute bg-col-blue _offcanvas"
+     [ngClass]="{'_closed': closed}">
+    <app-logo></app-logo>
+    <div class="_menu-wrap">
+        <app-menu></app-menu>
+    </div>
+</div>
